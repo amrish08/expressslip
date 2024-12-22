@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expressslip</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+  </head>
+
+  <body>
+  <% if current_user %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+    <a class="navbar-brand" href="/dashboard">
+      <img src="<%= asset_path('logo.jpg') %>" alt="Logo" style="width: 40px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+        <%= link_to "Deposit Request", new_deposit_request_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Deposit History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Transactions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Medical Center</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Profile</a>
+        </li>
+      </ul>
+      <div class="profile-info">
+        <span class="badge bg-primary"><%= current_user.userid %>Tk</span>
+        <%= link_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </nav>
+<% else %>
+
+<% end %>
+
+    <%= yield %>
+  </body>
+</html>

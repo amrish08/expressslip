@@ -1,0 +1,2 @@
+class Slip < ApplicationRecord
+end
