@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
   protect_from_forgery except: :create
+  before_action :authenticate_user!
   
   def new
+    if current_user.present?
+      redirect_to dashboard_index_path
+    end
   end
 
   def create

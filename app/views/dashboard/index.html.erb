@@ -27,10 +27,10 @@
     <div class="card p-4">
       <!-- Buttons -->
       <div class="card-buttons text-center mb-4">
-      <button class="btn btn-primary" onclick="window.location.href='<%= new_normal_slip_path %>'">Normal Slip</button>
-        <button class="btn btn-success">Night Slip</button>
-        <button class="btn btn-info text-white">Special Slip</button>
-        <button class="btn btn-warning">Slip Payment</button>
+        <button class="btn btn-primary" onclick="window.location.href='<%= new_normal_slip_path %>?type=normal'">Normal Slip</button>
+        <button class="btn btn-success" onclick="window.location.href='<%= new_normal_slip_path %>?type=night'">Night Slip</button>
+        <button class="btn btn-info text-white" onclick="window.location.href='<%= new_normal_slip_path %>?type=special'">Special Slip</button>
+        <button class="btn btn-warning text-white" onclick="window.location.href='<%= new_slip_payment_path %>'">Special Slip</button>
       </div>
 
       <!-- Filters -->

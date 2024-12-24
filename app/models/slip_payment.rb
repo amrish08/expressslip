@@ -1,0 +1,2 @@
+class SlipPayment < ApplicationRecord
+end

@@ -8,7 +8,7 @@ class DepositRequestsController < ApplicationController
     def create
         @deposit_request = DepositRequest.create!(deposit_request_params.merge(user_id: current_user.id))
       if @deposit_request.save
-        redirect_to , notice: 'Deposit request submitted successfully.'
+        redirect_to dashboard_index_path, notice: 'Deposit request submitted successfully.'
       else
         render :new, alert: 'Failed to submit deposit request.'
       end
