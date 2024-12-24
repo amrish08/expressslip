@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_22_114359) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_24_181051) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -78,7 +78,68 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_22_114359) do
     t.index ["user_id"], name: "index_deposit_requests_on_user_id"
   end
 
+  create_table "night_slips", force: :cascade do |t|
+    t.string "country"
+    t.string "city"
+    t.string "country_traveling_to"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "gender"
+    t.string "marital_status"
+    t.string "nationality"
+    t.string "passport_number"
+    t.string "confirm_passport"
+    t.date "passport_issue_date"
+    t.date "passport_expiry_date"
+    t.string "visa_type"
+    t.string "national_id"
+    t.string "position_applied_for"
+    t.text "remarks"
+    t.boolean "confirmation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "slip_payment", force: :cascade do |t|
+    t.string "payment_link"
+    t.text "remarks"
+  end
+
+  create_table "slip_payments", force: :cascade do |t|
+    t.string "payment_link"
+    t.text "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "slips", force: :cascade do |t|
+    t.string "country"
+    t.string "city"
+    t.string "country_traveling_to"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "gender"
+    t.string "marital_status"
+    t.string "nationality"
+    t.string "passport_number"
+    t.string "confirm_passport"
+    t.date "passport_issue_date"
+    t.date "passport_expiry_date"
+    t.string "visa_type"
+    t.string "national_id"
+    t.string "position_applied_for"
+    t.text "remarks"
+    t.boolean "confirmation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "slip_type"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_slips_on_user_id"
+  end
+
+  create_table "special_slips", force: :cascade do |t|
     t.string "country"
     t.string "city"
     t.string "country_traveling_to"
@@ -111,4 +172,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_22_114359) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deposit_requests", "users"
+  add_foreign_key "slips", "users"
 end

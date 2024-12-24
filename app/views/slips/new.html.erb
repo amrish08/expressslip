@@ -1,76 +1,85 @@
 <div class="container mt-4">
-  <h3 class="text-primary mb-4">Normal Slip</h3>
+  <% if params[:type] == 'normal' %>
+    <h3 class="text-primary mb-4">Normal Slip</h3>
+  <% end %>
+    <% if params[:type] == 'night' %>
+    <h3 class="text-success mb-4">Night Slip</h3>
+  <% end %>
+    <% if params[:type] == 'special' %>
+    <h3 class="text-info mb-4">Special Slip</h3>
+  <% end %>
   <%= form_with model: @slip, url: create_normal_slip_path, local: true, class: "row g-3" do |f| %>
+    <%= f.hidden_field :slip_type, value: params[:type] %>
     <div class="col-md-4">
       <%= f.label :country, class: "form-label" %>
-      <%= f.select :country, [["Bangladesh", "Bangladesh"], ["India", "India"]], { prompt: "Select Country" }, class: "form-select" %>
+      <%= f.select :country, [["Bangladesh", "Bangladesh"]], { prompt: "Select Country" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :city, class: "form-label" %>
-      <%= f.text_field :city, class: "form-control", placeholder: "Select your city" %>
+      <%= f.select :city, [["Barishal", "Barishal"], ["Chitagong", "Chitagong"], ["Cox's bazar", "Cox's bazar"], ["Cumilla", "Cumilla"], ["Dhaka", "Dhaka"], ["Rajshahi", "Rajshahi"], ["Sherpur", "Sherpur"], ["Sylhet", "Sylhet"]], { prompt: "Select City" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :country_traveling_to, class: "form-label" %>
-      <%= f.select :country_traveling_to, [["UAE", "UAE"], ["Saudi Arabia", "Saudi Arabia"]], { prompt: "Select GCC country" }, class: "form-select" %>
+      <%= f.select :country_traveling_to, [["UAE", "UAE"], ["Saudi Arabia", "Saudi Arabia"], ["Bahrain", "Bahrain"], ["Kuwait", "Kuwait"], ["Oman", "Oman"], ["Qatar", "Qatar"], ["Yemen", "Yemen"]], { prompt: "Select GCC country" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :first_name, class: "form-label" %>
-      <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
+      <%= f.text_field :first_name, class: "form-control", placeholder: "First name", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :last_name, class: "form-label" %>
-      <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Last name", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :dob, "Date of Birth", class: "form-label" %>
-      <%= f.date_field :dob, class: "form-control" %>
+      <%= f.date_field :dob, class: "form-control", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :gender, class: "form-label" %>
-      <%= f.select :gender, [["Male", "Male"], ["Female", "Female"]], { prompt: "Select Gender" }, class: "form-select" %>
+      <%= f.select :gender, [["Male", "Male"], ["Female", "Female"]], { prompt: "Select Gender" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :marital_status, class: "form-label" %>
-      <%= f.select :marital_status, [["Single", "Single"], ["Married", "Married"]], { prompt: "Select Marital Status" }, class: "form-select" %>
+      <%= f.select :marital_status, [["Single", "Single"], ["Married", "Married"]], { prompt: "Select Marital Status" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :nationality, class: "form-label" %>
-      <%= f.text_field :nationality, class: "form-control", placeholder: "Nationality" %>
+      <%= f.select :nationality, [["Bangladesh", "Bangladesh"]], { prompt: "Select Nationality" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :passport_number, class: "form-label" %>
-      <%= f.text_field :passport_number, class: "form-control", placeholder: "Passport number" %>
+      <%= f.text_field :passport_number, class: "form-control", placeholder: "Passport number", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :confirm_passport, "Confirm Passport", class: "form-label" %>
-      <%= f.text_field :confirm_passport, class: "form-control" %>
+      <%= f.text_field :confirm_passport, class: "form-control", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :passport_issue_date, class: "form-label" %>
-      <%= f.date_field :passport_issue_date, class: "form-control" %>
+      <%= f.date_field :passport_issue_date, class: "form-control", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :passport_expiry_date, class: "form-label" %>
-      <%= f.date_field :passport_expiry_date, class: "form-control" %>
+      <%= f.date_field :passport_expiry_date, class: "form-control", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :visa_type, class: "form-label" %>
-      <%= f.text_field :visa_type, class: "form-control", placeholder: "Visa Type" %>
+      <%= f.select :visa_type, [["Work Visa", "Work Visa"], ["Family Visa", "Family Visa"]], { prompt: "Select Visa Type" }, class: "form-select", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :national_id, "National ID (Optional)", class: "form-label" %>
-      <%= f.text_field :national_id, class: "form-control" %>
+      <%= f.text_field :national_id, class: "form-control", required: true %>
     </div>
     <div class="col-md-4">
       <%= f.label :position_applied_for, class: "form-label" %>
-      <%= f.text_field :position_applied_for, class: "form-control", placeholder: "Position applied for" %>
+      <%= f.text_field :position_applied_for, class: "form-control", placeholder: "Position applied for", required: true %>
     </div>
     <div class="col-md-12">
       <%= f.label :remarks, "Your Own Remarks (If Any)", class: "form-label" %>
       <%= f.text_area :remarks, class: "form-control", placeholder: "Remarks, if any" %>
     </div>
     <div class="col-md-12">
-      <%= f.check_box :confirmation %>
+      <%= f.check_box :confirmation, required: true %>
       <%= f.label :confirmation, "I confirm that the information given in this form is true, complete and accurate" %>
     </div>
     <div class="col-md-12 text-center mt-3">

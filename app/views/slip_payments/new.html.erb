@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Slip Payment</h1>
+  <%= form_with model: @slip_payment, url: slip_payments_path, local: true, class: "needs-validation" do |f| %>
+    <div class="form-group mb-3">
+      <%= f.label :payment_link, "Payment Link", class: "form-label" %>
+      <%= f.text_field :payment_link, class: "form-control", placeholder: "Payment Link", required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :remarks, "Remarks, if any", class: "form-label" %>
+      <%= f.text_area :remarks, class: "form-control", placeholder: "Remarks, if any", rows: 3 %>
+    </div>
+
+    <div class="d-grid">
+      <%= f.submit "Save and Process", class: "btn btn-dark btn-block" %>
+    </div>
+  <% end %>
+
+  <p class="text-muted mt-3">
+    <small>For assistance with payment approvals and slip cancellations, please contact us at: 01601106530.</small>
+  </p>
+</div>
