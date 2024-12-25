@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_24_181051) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_25_054246) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -75,7 +75,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_24_181051) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "admin_remark"
+    t.string "status", default: "processing"
+    t.string "transaction_id"
+    t.string "transaction_type"
+    t.string "item_type"
+    t.decimal "running_balance"
     t.index ["user_id"], name: "index_deposit_requests_on_user_id"
+  end
+
+  create_table "medical_centers", force: :cascade do |t|
+    t.string "country"
+    t.string "city"
+    t.string "center_name"
+    t.string "traveling_country"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "night_slips", force: :cascade do |t|
@@ -111,6 +127,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_24_181051) do
     t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "amount"
+    t.string "payment_system"
+    t.string "reference_no"
+    t.date "deposited_date"
+    t.integer "user_id"
+    t.text "admin_remark"
+    t.string "status"
+    t.string "transaction_id"
+    t.string "transaction_type"
+    t.string "item_type"
+    t.decimal "running_balance"
   end
 
   create_table "slips", force: :cascade do |t|
@@ -136,6 +163,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_24_181051) do
     t.datetime "updated_at", null: false
     t.integer "slip_type"
     t.integer "user_id"
+    t.string "transaction_id"
+    t.string "transaction_type"
+    t.string "item_type"
+    t.decimal "running_balance"
     t.index ["user_id"], name: "index_slips_on_user_id"
   end
 
@@ -172,5 +203,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_24_181051) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deposit_requests", "users"
+  add_foreign_key "slip_payments", "users"
   add_foreign_key "slips", "users"
 end

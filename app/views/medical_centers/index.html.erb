@@ -1,0 +1,62 @@
+<!-- app/views/medical_centers/index.html.erb -->
+<div class="container mt-4">
+  <h1 class="mb-4">Medical Centers</h1>
+
+  <!-- Filters Form -->
+  <form method="get" action="<%= medical_centers_path %>" class="mb-4">
+    <div class="row">
+      <div class="col-md-3">
+        <label for="country" class="form-label">Country</label>
+        <select name="country" id="country" class="form-select" onchange="this.form.submit()">
+          <option value="">Select Country</option>
+          <% @countries.each do |country| %>
+            <option value="<%= country %>" <%= 'selected' if params[:country] == country %>><%= country %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="city" class="form-label">City</label>
+        <select name="city" id="city" class="form-select">
+          <option value="">Select City</option>
+          <% @cities.each do |city| %>
+            <option value="<%= city %>" <%= 'selected' if params[:city] == city %>><%= city %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="center_name" class="form-label">Center Name</label>
+        <input type="text" name="center_name" id="center_name" class="form-control" placeholder="Enter Center Name" value="<%= params[:center_name] %>">
+      </div>
+
+      <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Table -->
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Center Name</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Traveling Country</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @medical_centers.each do |center| %>
+        <tr>
+          <td><%= center.center_name %></td>
+          <td><%= center.country %></td>
+          <td><%= center.city %></td>
+          <td><%= center.traveling_country %></td>
+          <td><%= number_to_currency(center.price, unit: "৳") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

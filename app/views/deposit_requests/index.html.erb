@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Deposit Filter</h2>
+  <form method="get" action="/deposit_requests" class="row g-3">
+    <div class="col-md-3">
+      <label for="start_date" class="form-label">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" class="form-control" value="<%= params[:start_date] %>">
+    </div>
+    <div class="col-md-3">
+      <label for="end_date" class="form-label">End Date:</label>
+      <input type="date" id="end_date" name="end_date" class="form-control" value="<%= params[:end_date] %>">
+    </div>
+    <div class="col-md-3">
+      <label for="status" class="form-label">Status:</label>
+      <select id="status" name="status" class="form-select">
+        <option value="All" <%= params[:status] == "All" ? "selected" : "" %>>All</option>
+        <option value="Pending" <%= params[:status] == "Pending" ? "selected" : "" %>>Pending</option>
+        <option value="Approved" <%= params[:status] == "Approved" ? "selected" : "" %>>Approved</option>
+        <option value="Rejected" <%= params[:status] == "Rejected" ? "selected" : "" %>>Rejected</option>
+      </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+  </form>
+
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th>Serial</th>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Remarks by Admin</th>
+        <th>Remarks by User</th>
+        <th>Deposit Slip</th>
+        <th>Deposited Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @deposit_requests.each_with_index do |request, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= request.id %></td>
+          <td><%= request.user_id %></td>
+          <td><%= request.amount %></td>
+          <td><%= request.status %></td>
+          <td><%= request.admin_remark %></td>
+          <td><%= request.remarks %></td>
+          <td>
+            <% if request.deposit_slip.attached? %>
+                <%= link_to 'View', url_for(request.deposit_slip), target: "_blank" %>
+            <% else %>
+                No file
+            <% end %>
+          </td>
+          <td><%= request.deposited_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

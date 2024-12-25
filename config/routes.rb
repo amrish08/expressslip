@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post '/post_password', to: 'profile#post_password', as: 'post_password'
 
   resources :users, only: [:new, :create]
-  resources :deposit_requests, only: [:new, :create]
+  resources :deposit_requests, only: [:new, :create, :index]
   resources :slip_payments, only: [:new, :create]
+  resources :transactions, only: [:index]
+  get "medical_centers", to: "medical_centers#index", as: :medical_centers
 end

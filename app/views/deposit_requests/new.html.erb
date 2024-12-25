@@ -8,14 +8,14 @@
       </div>
       <div class="col-md-6">
         <%= f.label :payment_system, "Payment System:" %>
-        <%= f.select :payment_system, ["Bank Transfer", "Mobile Banking", "Other"], { prompt: "----" }, class: "form-control", required: true %>
+        <%= f.select :payment_system, ["NRBC Bank PLC.", "Nagad", "Bkash", "Eastern Bank Limited", "Others or Cash" ,"Refund"], { prompt: "----" }, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="row mt-3">
       <div class="col-md-6">
         <%= f.label :reference_no, "Reference No:" %>
-        <%= f.text_field :reference_no, class: "form-control" %>
+        <%= f.text_field :reference_no, class: "form-control", required: true %>
       </div>
       <div class="col-md-6">
         <%= f.label :deposited_date, "Deposited Date:" %>
@@ -26,7 +26,7 @@
     <div class="row mt-3">
       <div class="col-md-6">
         <%= f.label :deposit_slip, "Deposit Slip:" %>
-        <%= f.file_field :deposit_slip, class: "form-control" %>
+        <%= f.file_field :deposit_slip, class: "form-control", required: true %>
       </div>
       <div class="col-md-6">
         <%= f.label :remarks, "Remarks:" %>

@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h2>Transaction Ledger</h2>
+  <form method="get" action="/transactions" class="row g-3">
+    <div class="col-md-3">
+      <label for="transaction_type" class="form-label">Transaction Type:</label>
+      <select id="transaction_type" name="transaction_type" class="form-select">
+        <option value="All" <%= params[:transaction_type] == "All" ? "selected" : "" %>>All</option>
+        <option value="Credit" <%= params[:transaction_type] == "deposit request" ? "selected" : "" %>>Deposit Request</option>
+        <option value="Debit" <%= params[:transaction_type] == "slip payment" ? "selected" : "" %>>Slip Payment</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="start_date" class="form-label">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" class="form-control" value="<%= params[:start_date] %>">
+    </div>
+    <div class="col-md-3">
+      <label for="end_date" class="form-label">End Date:</label>
+      <input type="date" id="end_date" name="end_date" class="form-control" value="<%= params[:end_date] %>">
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+    </div>
+  </form>
+</div>
+
+<div class="container mt-4">
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Serial</th>
+        <th>Transaction ID</th>
+        <th>Username</th>
+        <th>T. Type</th>
+        <th>Creation Date</th>
+        <th>Item Type</th>
+        <th>Ref. Transaction</th>
+        <th>Amount</th>
+        <th>Running Balance</th>
+        <th>Remarks by Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @transactions.present? %>
+        <% @transactions.each_with_index do |transaction, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= transaction.id %></td>
+            <td><%= transaction.user_id %></td>
+            <td><%= transaction.transaction_type %></td>
+            <td><%= transaction.created_at %></td>
+            <td><%= transaction.item_type %></td>
+            <td><%= transaction.reference_no %></td>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.running_balance %></td>
+            <td><%= transaction.remarks_by_admin %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="10" class="text-center">No records found.</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
