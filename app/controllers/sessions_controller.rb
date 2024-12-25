@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   protect_from_forgery except: :create
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   
   def new
     if current_user.present?
