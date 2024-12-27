@@ -9,9 +9,13 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
-development:
-  <<: *default
-  database: storage/development.sqlite3
+production:
+  <<: *default 
+  database: expressslip # Use Render's environment variables
+  username: expressslip_dev_user
+  password: pXhTziRTjfL4FGJXg3YmewtlBut7CRUH
+  host: dpg-ctngdd3tq21c73cmcakg-a
+  port: <%= ENV['DB_PORT'] || 5432 %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
