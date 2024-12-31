@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.3.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.5", ">= 7.1.5.1"
+gem "rails"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -15,6 +15,10 @@ gem "sqlite3", ">= 1.4"
 gem "puma", ">= 5.0"
 
 gem "pry"
+
+gem "rake"
+
+gem "bundler"
 
 
 gem 'rack-cors'

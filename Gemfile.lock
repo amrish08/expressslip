@@ -343,6 +343,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 5.2.0)
+  bundler
   capybara
   country_select (~> 8.0)
   debug
@@ -353,7 +354,8 @@ DEPENDENCIES
   pry
   puma (>= 5.0)
   rack-cors
-  rails (~> 7.1.5, >= 7.1.5.1)
+  rails
+  rake
   ransack
   sassc-rails
   selenium-webdriver
