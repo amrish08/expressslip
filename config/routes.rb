@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   resources :deposit_requests, only: [:new, :create, :index]
   resources :slip_payments, only: [:new, :create]
   resources :transactions, only: [:index]
-  get "medical_centers", to: "medical_centers#index", as: :medical_centers
+  get "/medical_centers", to: "medical_centers#index", as: :medical_centers
+  get "/medical_index_centers", to: "medical_centers#medical_index"
 end

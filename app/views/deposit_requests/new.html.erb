@@ -4,11 +4,12 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.label :amount, "Amount (BDT):" %>
-        <%= f.number_field :amount, class: "form-control", step: "0.01", required: true %>
+        <%= f.number_field :amount, class: "form-control", step: "0.01", required: true, id: "amount-input" %>
+        <small id="adjusted-amount-message" class="text-muted"></small>
       </div>
       <div class="col-md-6">
         <%= f.label :payment_system, "Payment System:" %>
-        <%= f.select :payment_system, ["NRBC Bank PLC.", "Nagad", "Bkash", "Eastern Bank Limited", "Others or Cash" ,"Refund"], { prompt: "----" }, class: "form-control", required: true %>
+        <%= f.select :payment_system, ["NRBC Bank PLC.", "Nagad", "Bkash", "Eastern Bank Limited", "Others or Cash", "Refund"], { prompt: "----" }, class: "form-control", required: true, id: "payment-system-select" %>
       </div>
     </div>
 
@@ -39,3 +40,30 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const amountInput = document.getElementById("amount-input");
+    const paymentSystemSelect = document.getElementById("payment-system-select");
+    const adjustedAmountMessage = document.getElementById("adjusted-amount-message");
+
+    function updateAdjustedAmountMessage() {
+      const amount = parseFloat(amountInput.value);
+      const selectedPaymentSystem = paymentSystemSelect.value;
+
+      // Check if the selected payment system is "Others or Cash"
+      if (selectedPaymentSystem === "Others or Cash" && !isNaN(amount)) {
+        const adjustedAmount = (amount * 0.985).toFixed(2);
+        adjustedAmountMessage.textContent = `Adjusted amount after 1% deduction is: ${adjustedAmount} BDT`;
+      } else {
+        adjustedAmountMessage.textContent = "";
+      }
+    }
+
+    // Listen for changes in the amount field
+    amountInput.addEventListener("input", updateAdjustedAmountMessage);
+
+    // Listen for changes in the payment system select
+    paymentSystemSelect.addEventListener("change", updateAdjustedAmountMessage);
+  });
+</script>

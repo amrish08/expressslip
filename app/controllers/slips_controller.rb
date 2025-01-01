@@ -20,7 +20,7 @@ class SlipsController < ApplicationController
     private
   
     def slip_params
-      params.require(:slip).permit(:country, :city, :country_traveling_to, :first_name, :last_name, :dob, :gender, :marital_status, :nationality, :passport_number, :confirm_passport, :passport_issue_date, :passport_expiry_date, :visa_type, :national_id, :position_applied_for, :remarks, :confirmation, :type, :user_id)
+      params.require(:slip).permit(:country, :city, :country_traveling_to, :first_name, :last_name, :dob, :gender, :marital_status, :nationality, :passport_number, :confirm_passport, :passport_issue_date, :passport_expiry_date, :visa_type, :national_id, :position_applied_for, :remarks, :confirmation, :type, :user_id, :medical_center)
     end
   end
   

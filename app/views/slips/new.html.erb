@@ -70,10 +70,108 @@
       <%= f.label :national_id, "National ID (Optional)", class: "form-label" %>
       <%= f.text_field :national_id, class: "form-control", required: true %>
     </div>
+
+    <% if params[:type] == 'special' %>
+      <div class="col-md-4">
+        <%= f.label :medical_centre, "Medical Centre", class: "form-label" %>
+        <%= f.select :medical_centre, [], { prompt: "Select Medical Centre" }, class: "form-select", id: "medical_centre", required: true %>
+      </div>
+    <% end %>
     <div class="col-md-4">
-      <%= f.label :position_applied_for, class: "form-label" %>
-      <%= f.text_field :position_applied_for, class: "form-control", placeholder: "Position applied for", required: true %>
-    </div>
+      <%= f.label :position_applied_for, "Position Applied For", class: "form-label" %>
+      <%= f.select :position_applied_for, 
+                  [
+                    ["Banking & Finance", "Banking & Finance"],
+                    ["Carpenter", "Carpenter"],
+                    ["Cashier", "Cashier"],
+                    ["Electrician", "Electrician"],
+                    ["Engineer", "Engineer"],
+                    ["General Secretary", "General Secretary"],
+                    ["Health & Medicine & Nursing", "Health & Medicine & Nursing"],
+                    ["Heavy Driver", "Heavy Driver"],
+                    ["IT & Internet Engineer", "IT & Internet Engineer"],
+                    ["Leisure & Tourism", "Leisure & Tourism"],
+                    ["Light Driver", "Light Driver"],
+                    ["Mason", "Mason"],
+                    ["President", "President"],
+                    ["Labour", "Labour"],
+                    ["Plumber", "Plumber"],
+                    ["Doctor", "Doctor"],
+                    ["Family", "Family"],
+                    ["Steel Fixer", "Steel Fixer"],
+                    ["Aluminum Technician", "Aluminum Technician"],
+                    ["Nurse", "Nurse"],
+                    ["Male Nurse", "Male Nurse"],
+                    ["Ward Boy", "Ward Boy"],
+                    ["Shovel Operator", "Shovel Operator"],
+                    ["Dozer Operator", "Dozer Operator"],
+                    ["Car Mechanic", "Car Mechanic"],
+                    ["Petrol Mechanic", "Petrol Mechanic"],
+                    ["Diesel Mechanic", "Diesel Mechanic"],
+                    ["Student", "Student"],
+                    ["Accountant", "Accountant"],
+                    ["Lab Technician", "Lab Technician"],
+                    ["Draftsman", "Draftsman"],
+                    ["Auto-Cad Operator", "Auto-Cad Operator"],
+                    ["Painter", "Painter"],
+                    ["Tailor", "Tailor"],
+                    ["Welder", "Welder"],
+                    ["X-ray Technician", "X-ray Technician"],
+                    ["Lecturer", "Lecturer"],
+                    ["A.C Technician", "A.C Technician"],
+                    ["Business", "Business"],
+                    ["Cleaner", "Cleaner"],
+                    ["Security Guard", "Security Guard"],
+                    ["House Maid", "House Maid"],
+                    ["Manager", "Manager"],
+                    ["Hospital Cleaning", "Hospital Cleaning"],
+                    ["Mechanic", "Mechanic"],
+                    ["Computer Operator", "Computer Operator"],
+                    ["House Driver", "House Driver"],
+                    ["Driver", "Driver"],
+                    ["Cleaning Labour", "Cleaning Labour"],
+                    ["Building Electrician", "Building Electrician"],
+                    ["Salesman", "Salesman"],
+                    ["Plastermason", "Plastermason"],
+                    ["Servant", "Servant"],
+                    ["Barber", "Barber"],
+                    ["Residence", "Residence"],
+                    ["Shepherds", "Shepherds"],
+                    ["Employment", "Employment"],
+                    ["Fuel Filler", "Fuel Filler"],
+                    ["Worker", "Worker"],
+                    ["House Boy", "House Boy"],
+                    ["House Wife", "House Wife"],
+                    ["RCC Fitter", "RCC Fitter"],
+                    ["Clerk", "Clerk"],
+                    ["Microbiologist", "Microbiologist"],
+                    ["Teacher", "Teacher"],
+                    ["Helper", "Helper"],
+                    ["Hajj Duty", "Hajj Duty"],
+                    ["Shuttering", "Shuttering"],
+                    ["Supervisor", "Supervisor"],
+                    ["Medical Specialist", "Medical Specialist"],
+                    ["Office Secretary", "Office Secretary"],
+                    ["Technician", "Technician"],
+                    ["Butcher", "Butcher"],
+                    ["Arabic Food Cook", "Arabic Food Cook"],
+                    ["Agricultural Worker", "Agricultural Worker"],
+                    ["Service", "Service"],
+                    ["Studio CAD Designer", "Studio CAD Designer"],
+                    ["Financial Analyst", "Financial Analyst"],
+                    ["Cabin Appearance (AIR LINES)", "Cabin Appearance (AIR LINES)"],
+                    ["Car Washer", "Car Washer"],
+                    ["Surveyor", "Surveyor"],
+                    ["Electrical Technician", "Electrical Technician"],
+                    ["Waiter", "Waiter"],
+                    ["Nursing helper", "Nursing helper"],
+                    ["Anesthesia technician", "Anesthesia technician"],
+                    ["Marvel", "Marvel"],
+                    ["Construction worker", "Construction worker"]
+                  ], 
+                  { prompt: "Select Position" }, 
+                  class: "form-select select2 form-select-md", required: true %>
+      </div>
     <div class="col-md-12">
       <%= f.label :remarks, "Your Own Remarks (If Any)", class: "form-label" %>
       <%= f.text_area :remarks, class: "form-control", placeholder: "Remarks, if any" %>
